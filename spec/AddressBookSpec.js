@@ -30,6 +30,6 @@ describe('Address Book', function() {
     // Should define 'deleteContact' method in the prototype of AddressBook constructor.
     addressBook.deleteContact(0);
     // expect - (the rerun of a function that we are testing).method defined by Jasmine, that will return true or false. In this case check if the return value is something - toBe(something).
-    expect(addressBook.deleteContact(0)).not.toBeDefined();
+    expect(addressBook.getContact(0)).not.toBeDefined();
   });
 });
