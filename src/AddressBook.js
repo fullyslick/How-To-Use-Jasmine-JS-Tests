@@ -12,3 +12,8 @@ AddressBook.prototype.addContact = function(inputObject) {
 AddressBook.prototype.getContact = function(index){
   return this.contact[index];
 }
+
+// Method that deletes a contact from the array above. It returns the value of the deleted element.
+AddressBook.prototype.deleteContact = function(index){
+  this.contact.splice(index, 1);
+}
