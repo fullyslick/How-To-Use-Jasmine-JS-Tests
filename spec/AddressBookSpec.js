@@ -1,3 +1,5 @@
+// Group set of tests using 'describe'.
+// 'String with the group of tests' , function - containing the tests.
 describe('Address Book', function() {
   // Global variables accessed by all tests below.
   var addressBook;
@@ -39,4 +41,33 @@ describe('Address Book', function() {
     // expect - (the return of a function that we are testing).method defined by Jasmine, that will return true or false. In this case check if the return value is something - toBe(something).
     expect(addressBook.getContact(0)).not.toBeDefined();
   });
+});
+
+// New set of test for testing async calls to server API.
+describe('Async Address Book', function() {
+  // Create new object from the constructor class (check AddressBook.js).
+  var addressBook = new AddressBook();
+
+  // !!! To test async calls, you should wait for the server to respond first,
+  // and then run the test.
+  // So before each test, run the simulation to server call,
+  // and after the simulation got a response from server close the beforeEach function.
+  beforeEach(function(done){
+    addressBook.getInitialContacts(function(){
+      // This is the returned promise that will close the async function.
+      done();
+    });
+  });
+
+  // Run the Test after there was a server response. Using done notfier.
+  it('should grab initial contacts', function(done) {
+
+    // Call the prototype method 'getInitialContacts' of addressBook.
+    addressBook.getInitialContacts();
+
+    // Check if there is returned result from the server.
+    expect(addressBook.initialComplete).toBe(true);
+
+    done();
+  })
 });
